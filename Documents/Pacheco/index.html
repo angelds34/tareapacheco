@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, gray, black);
             height: 100vh;
             margin: 0;
             display: flex;
@@ -30,7 +30,7 @@
         }
 
         button {
-            background: #667eea;
+            background: orangered;
             color: white;
             border: none;
             padding: 12px 20px;
@@ -41,7 +41,7 @@
         }
 
         button:hover {
-            background: #5a67d8;
+            background: gray;
             transform: scale(1.05);
         }
 
@@ -58,18 +58,23 @@
     </div>
 
     <script>
-        function obtenerNombre() {
-            fetch("servicio.php")
-                .then(response => response.text())
-                .then(data => {
-                    alert("Nombre recibido: " + data);
-                })
-                .catch(error => {
-                    alert("Error al obtener el nombre");
-                    console.error(error);
-                });
-        }
-    </script>
+function obtenerNombre() {
+    fetch("servicio.php")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Error en el servicio");
+            }
+            return response.text();
+        })
+        .then(data => {
+            alert("Nombre recibido: " + data);
+        })
+        .catch(error => {
+            alert("No se pudo obtener el nombre");
+            console.error(error);
+        });
+}
 
+</script>
 </body>
 </html>
