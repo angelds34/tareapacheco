@@ -59,22 +59,20 @@
 
     <script>
 function obtenerNombre() {
-    fetch("servicio.php")
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Error en el servicio");
-            }
-            return response.text();
-        })
-        .then(data => {
-            alert("Nombre recibido: " + data);
-        })
-        .catch(error => {
-            alert("No se pudo obtener el nombre");
-            console.error(error);
-        });
+    fetch("https://serviciosimple.infinityfree.me/servicio.php", {
+        method: "GET",
+        mode: "cors"
+    })
+    .then(response => response.text())
+    .then(nombre => {
+        alert("Nombre recibido: " + nombre);
+    })
+    .catch(error => {
+        alert("Error al obtener el nombre");
+        console.error(error);
+    });
 }
-
 </script>
+
 </body>
 </html>
